@@ -1,3 +1,6 @@
+*.pickle
+*.log
+
 *.py[cod]
 
 # C extensions
