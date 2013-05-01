@@ -157,7 +157,7 @@ class App:
     """ DB - Load the objects """
     def _db_load(self):
         if os.path.exists('db.pickle'):
-            with open('db.pck', 'rb') as f:
+            with open('db.pickle', 'rb') as f:
                 self.macs = cPickle.load(f)
                 logger.info('Loaded %s entries from %s' % (len(self.macs), f))
         else:
