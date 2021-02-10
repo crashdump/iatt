@@ -13,8 +13,7 @@ CREATE TABLE `arpevents` (
 ENGINE=InnoDB;
 """
 
-import MySQLdb as mdb
-import sys
+import mysql.connector
 
 con = None
 
@@ -24,17 +23,23 @@ def alert(mac, ip, datetime, last_event_name, actionsoutput):
         for k, v in actionsoutput.items():
             aoutput = aoutput + '<action name="%s">%s</action>\r\n' % (k, v)
 
-        con = mdb.connect('localhost', 'arpaction', '_amazingpassword_', 'arpaction');
+        con = mysql.connector.connect(
+            host = "localhost",
+            user = "mysql",
+            password = "",
+            database = "iatt"
+        )
+
         cur = con.cursor()
         q = """INSERT INTO arpevents (datetime, mac, ip, lasteventname, actionsoutput) VALUES ('%s','%s','%s', '%s', '%s') ON DUPLICATE KEY UPDATE mac = '%s'""" % \
                                                                      (datetime, mac, ip, con.escape_string(last_event_name), con.escape_string(aoutput), mac)
         cur.execute(q)
-        data = cur.fetchone()
+        # data = cur.fetchone()
         con.commit()
         return "Pushed to the db."
     
-    except mdb.Error, e:
-        print "Error %d: %s" % (e.args[0],e.args[1])
+    except mysql.connector.Error as e:
+        print("Error %d: %s" % (e.args[0],e.args[1]))
         return "Error while inserting in db"
     
     finally:

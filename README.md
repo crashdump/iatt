@@ -18,50 +18,51 @@ See LICENSE.md
 
 Dependencies/Requirements
 -------------------------
-It's based on the exellent python-scapy library and 
-the python-daemon package.
+It's based on the excellents scapy and python-daemon 
+libraries.
 
-On Debian based systems a simple command like that 
-should do the trick.
-
-  aptitude install python-scapy python-daemon 
-
+        python3 -m venv env
+        source env/bin/activate
+        pip install -r requirements.txt
 
 Usage
 -----
 To run the arpaction as a deamon, it's as simple as:
 
 To start the process:
-    python arpaction.py start
+
+        python iatt.py start
 
 To stop the process:
-    python arpaction.py stop
+
+        python iatt.py stop
 
 To restart the process:
-    python arpaction.py restart
+
+        python iatt.py restart
 
 And to start in debug mode (no daemon, log to stdout):
-    python arpaction.py debug
+
+        python iatt.py debug
 
 
 Modules
 -------
 There are two kind of modules:
-    *   Actions: Are executed first on an event and the 
-output result is stored
-    *   Alerts: Are executed afterwards. Can access the
-output result of Actions modules.
+ * Actions: Are executed first on an event, and the output result is stored
+ * Alerts: Are executed afterwards. Can access the output result of Actions modules.
 
-For now, I've written thoses:
-    *   Actions:
-        * ReverseName
-        * NmapScan
-    *   Alert
-        * SendMail
-        * MysqlStore
+For now, I have implemented:
+
+ *   Actions:
+   * ReverseName
+   * NmapScan
+ *   Alert
+   * SendMail
+   * MysqlStore
 
 
 Configuration
 -------------
-This program is still in early development stage so you'll
+This program is still in early development stages, so you'll
 have to edit arpaction.py to change the settings.
