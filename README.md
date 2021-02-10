@@ -1,7 +1,7 @@
-ArpAction
-=========
+If ARP Then That
+================
 
-ARP Action is a simple daemon who can execute an
+If ARP Then That is a simple daemon who can execute an
 action on a ARP 'who-has' or 'is-at' event.
 
 Ex: Run a nmap scan when a new host is discovered
